@@ -7,31 +7,42 @@ var con = mysql.createConnection({
   database: "mydb"
 });
 
+//multiple values
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected");
+
+//   var sql = "insert into customers (name, address) values ?";
+//   var values = [
+//     ["John", "Highway 41"],
+//     ["Peter", "Lowstreet 4"],
+//     ["Amy", "Apple st 652"],
+//     ["Hannah", "Mountain 21"],
+//     ["Michael", "Valley 345"],
+//     ["Sandy", "Ocean blvd 2"],
+//     ["Betty", "Green Grass 1"],
+//     ["Richard", "Sky st 331"],
+//     ["Susan", "One way 98"],
+//     ["Vicky", "Yellow Garden 2"],
+//     ["Ben", "Park Lane 38"],
+//     ["William", "Central st 954"],
+//     ["Chuck", "Main Road 989"],
+//     ["Viola", "Sideway 1633"]
+//   ];
+
+//   con.query(sql, [values], function(err, result){
+//       if (err) throw err;
+//       console.log("Insert Completed");
+//       console.log("Number of insertion: "+ result.affectedRows);
+//   });
+// });
+
+//get ID after insertion 
 con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected");
-
-  var sql = "insert into customers (name, address) values ?";
-  var values = [
-    ["John", "Highway 41"],
-    ["Peter", "Lowstreet 4"],
-    ["Amy", "Apple st 652"],
-    ["Hannah", "Mountain 21"],
-    ["Michael", "Valley 345"],
-    ["Sandy", "Ocean blvd 2"],
-    ["Betty", "Green Grass 1"],
-    ["Richard", "Sky st 331"],
-    ["Susan", "One way 98"],
-    ["Vicky", "Yellow Garden 2"],
-    ["Ben", "Park Lane 38"],
-    ["William", "Central st 954"],
-    ["Chuck", "Main Road 989"],
-    ["Viola", "Sideway 1633"]
-  ];
-
-  con.query(sql, [values], function(err, result){
+    if (err) throw err;
+    var sql = "INSERT INTO customers (name, address) VALUES ('Michelle', 'Blue Village 1')";
+    con.query(sql, function (err, result) {
       if (err) throw err;
-      console.log("Insert Completed");
-      console.log("Number of insertion: "+ result.affectedRows);
+      console.log("1 record inserted, ID: " + result.insertId);
+    });
   });
-});
